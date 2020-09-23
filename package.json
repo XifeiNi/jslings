@@ -8,6 +8,7 @@
   "contributors": [],
   "license": "MIT",
   "devDependencies": {
-    "jest": "^26.4.2"
+    "jest": "^26.4.2",
+    "typescript": "^4.0.3"
   }
 }
