@@ -1,0 +1,10 @@
+{
+  "exercises": [
+    {
+      "name": "strings1",
+      "path": "exercises/strings/strings1.js",
+      "hint": "Add your hint here",
+      "status": "incomplete"
+    }
+  ]
+}
