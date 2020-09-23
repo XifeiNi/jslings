@@ -3,8 +3,9 @@
     {
       "name": "strings1",
       "path": "exercises/strings/strings1.js",
-      "hint": "Add your hint here",
-      "status": "incomplete"
+      "hints": ["Add your hint here"],
+      "currentHintIndex": 0,
+      "status": "PENDING"
     }
   ]
 }
