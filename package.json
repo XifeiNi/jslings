@@ -1,0 +1,14 @@
+{
+  "name": "jslings",
+  "version": "0.0.1",
+  "description": "The easiest way to get started with JavaScript. 🐢",
+  "main": "index.js",
+  "repository": "git@github.com:XifeiNi/jslings.git",
+  "author": "Anthony Morris <anthony@amorrissound.com>",
+  "contributors": [],
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "typescript": "^4.0.3"
+  }
+}
