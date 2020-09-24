@@ -25,6 +25,7 @@
         "ink-testing-library": "^2.0.1",
         "jest-junit": "^11.1.0",
         "nodemon": "^2.0.4",
+        "plop": "^2.7.4",
         "ts-jest": "^26.4.0",
         "ts-node": "^9.0.0",
         "typescript": "^4.0.3",
@@ -35,7 +36,8 @@
         "jslings:watch": "nodemon -x ts-node -e ts,tsx ./src/cli/index.ts",
         "build": "tsc",
         "typecheck": "tsc --noEmit",
-        "test": "xo && jest"
+        "test": "xo && jest",
+        "generate": "plop"
     },
     "files": [
         "dist/ui.js",
