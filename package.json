@@ -31,8 +31,8 @@
     "xo": "^0.33.1"
   },
   "scripts": {
-    "cli": "ts-node ./src/cli/index.ts",
-    "cli:watch": "nodemon -x ts-node -e ts,tsx ./src/cli/index.ts",
+    "jslings": "ts-node ./src/cli/index.ts",
+    "jslings:watch": "nodemon -x ts-node -e ts,tsx ./src/cli/index.ts",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "test": "xo && jest"
