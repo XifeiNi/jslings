@@ -1,4 +1,6 @@
 import { NodePlopAPI } from 'plop';
+import fs from 'fs';
+import { GeneratorData } from './src/types/generator.types';
 
 module.exports = (plop: NodePlopAPI) => {
     plop.setGenerator("exercise", {
@@ -32,6 +34,23 @@ module.exports = (plop: NodePlopAPI) => {
                 type: "add",
                 path: "src/__tests__/{{concept}}/{{exercise}}.test.ts",
                 templateFile: "templates/test.hbs",
+            },
+            {
+                type: "modify",
+                path: "exercises.json",
+                transform: (contents: string, { concept, exercise }: GeneratorData): string => {
+                    const exerciseCatalogue = JSON.parse(contents);
+
+                    exerciseCatalogue.exercises.push({
+                        name: exercise,
+                        path: `exercises/${concept}/${exercise}.js`,
+                        hints: ["Add hints to help the user"],
+                        currentHintIndex: 0,
+                        status: "PENDING"
+                    });
+
+                    return JSON.stringify(exerciseCatalogue, null, 4);
+                }
             },
         ],
     });
