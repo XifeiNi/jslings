@@ -1,11 +1,13 @@
-module.exports = (plop) => {
+import { NodePlopAPI } from 'plop';
+
+module.exports = (plop: NodePlopAPI) => {
     plop.setGenerator("exercise", {
         description: "generate a new exercise with tests",
         prompts: [
             {
                 type: "list",
                 name: "concept",
-                message: "pick a JS concept",
+                message: "pick a JavaScript concept",
                 choices: [
                     "strings",
                     "numbers",
@@ -17,7 +19,7 @@ module.exports = (plop) => {
             {
                 type: "input",
                 name: "exercise",
-                message: "enter an exercise name (ex. strings1)",
+                message: "enter an exercise name (e.g. strings1)",
             },
         ],
         actions: [
