@@ -28,7 +28,7 @@ export const isFilePresent = (
 };
 
 /**
- * A utility function to list all the files present inside a folder
+ * A utility function to list all the file names present inside a folder
  * @param source Path to look into
  */
 export const listFiles = (source: string): string[] => {

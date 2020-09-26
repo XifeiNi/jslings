@@ -24,7 +24,7 @@ const Landing: React.FC<TestFile> = ({ testFileName }) => {
         } else if (fileStatus === FileStatus.INCONCLUSIVE) {
             return (
                 <Text>
-                    <Text color="red">{testFileName}</Text> is inconclusive,
+                    There exists more than one files with the name <Text color="red">{testFileName}</Text>
                     please provide a uniquely identifiable test name
                 </Text>
             );
