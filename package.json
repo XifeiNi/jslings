@@ -1,14 +1,69 @@
 {
-  "name": "jslings",
-  "version": "0.0.1",
-  "description": "The easiest way to get started with JavaScript. 🐢",
-  "main": "index.js",
-  "repository": "git@github.com:XifeiNi/jslings.git",
-  "author": "Anthony Morris <anthony@amorrissound.com>",
-  "contributors": [],
-  "license": "MIT",
-  "devDependencies": {
-    "jest": "^26.4.2",
-    "typescript": "^4.0.3"
-  }
+    "name": "jslings",
+    "version": "0.0.1",
+    "bin": "cli.js",
+    "engines": {
+        "node": ">=8"
+    },
+    "description": "The easiest way to get started with JavaScript. 🐢",
+    "main": "index.js",
+    "repository": "git@github.com:XifeiNi/jslings.git",
+    "author": "Anthony Morris <anthony@amorrissound.com>",
+    "contributors": [],
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/preset-react": "^7.10.4",
+        "@babel/register": "^7.11.5",
+        "@types/commander": "^2.12.2",
+        "@types/jest": "^26.0.14",
+        "@types/node": "^14.11.2",
+        "chalk": "^4.1.0",
+        "eslint-config-xo-react": "^0.23.0",
+        "eslint-plugin-jest": "^24.0.2",
+        "eslint-plugin-react": "^7.21.1",
+        "eslint-plugin-react-hooks": "^4.1.2",
+        "ink-testing-library": "^2.0.1",
+        "jest-junit": "^11.1.0",
+        "nodemon": "^2.0.4",
+        "ts-jest": "^26.4.0",
+        "ts-node": "^9.0.0",
+        "typescript": "^4.0.3",
+        "xo": "^0.33.1"
+    },
+    "scripts": {
+        "jslings": "ts-node ./src/cli/index.ts",
+        "jslings:watch": "nodemon -x ts-node -e ts,tsx ./src/cli/index.ts",
+        "build": "tsc",
+        "typecheck": "tsc --noEmit",
+        "test": "xo && jest"
+    },
+    "files": [
+        "dist/ui.js",
+        "dist/cli.js"
+    ],
+    "babel": {
+        "presets": [
+            "@babel/preset-react"
+        ]
+    },
+    "xo": {
+        "plugins": [
+            "jest"
+        ],
+        "extends": [
+            "xo-react/space",
+            "plugin:jest/recommended"
+        ],
+        "rules": {
+            "react/prop-types": "off"
+        },
+        "prettier": true
+    },
+    "dependencies": {
+        "commander": "^6.1.0",
+        "ink": "^3.0.6",
+        "jest": "^26.4.2",
+        "prop-types": "^15.7.2",
+        "react": "^16.13.1"
+    }
 }
