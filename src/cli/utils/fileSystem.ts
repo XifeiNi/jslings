@@ -41,3 +41,28 @@ export const listFiles = (source: string): string[] => {
         return [];
     }
 };
+
+
+/**
+ * Given a file, obtain its contents as a string
+ * @param path Path to the file
+ */
+export const obtainStringifiedFileContents = (path: string): string => {
+    try {
+        return fs.readFileSync(path, 'utf-8')
+    } catch(_) {
+        throw new Error(`File not found at ${path}`)
+    }
+}
+
+/**
+ * Parse the contents of stringified data and return it as an object
+ * @param stringifiedData
+ */
+export const jsonParsedFileContents = <T>(stringifiedData: string): T => {
+    try {
+        return JSON.parse(stringifiedData) as T
+    } catch(_) {
+        throw new Error(`Stringified file could not be parsed in the provided type`)
+    }
+}
