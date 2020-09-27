@@ -1,5 +1,4 @@
 import { NodePlopAPI } from 'plop';
-import fs from 'fs';
 import { GeneratorData } from './src/types/generator.types';
 
 module.exports = (plop: NodePlopAPI) => {

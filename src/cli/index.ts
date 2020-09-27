@@ -25,9 +25,7 @@ program
     .option("-t, --test <testName>", "path to the test")
     .action(async ({ test }: Command) => {
         render(
-            React.createElement(Landing, {
-                testFileName: test,
-            }),
+            React.createElement(Landing, {testFileName: test}),
         );
     });
 
