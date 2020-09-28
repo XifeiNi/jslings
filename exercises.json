@@ -7,8 +7,7 @@
         "hints": [
             "How would you add two numbers in real life?",
             "How could you complete the function using a plus sign?"
-        ],
-        "currentHintIndex": 0
+        ]
     },
     {
         "id": "13f41f4d-368c-4fe6-9dfa-f2bd12166dde",
@@ -17,7 +16,6 @@
         "testPath": "../__tests__/numbers/numbers2.test.ts",
         "hints": [
             "JavaScript has built in Math functions. Could you use one to square the number?"
-        ],
-        "currentHintIndex": 0
+        ]
     }
 ]
