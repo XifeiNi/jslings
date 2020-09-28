@@ -34,7 +34,7 @@ module.exports = (plop: NodePlopAPI) => {
                     "..",
                     "exercises",
                     "{{concept}}",
-                    "{{exercise}}.ts",
+                    "{{exercise}}.js",
                 ),
                 templateFile: path.join("templates", "exercise.hbs"),
             },
@@ -44,7 +44,11 @@ module.exports = (plop: NodePlopAPI) => {
                     "..",
                     "__tests__",
                     "{{concept}}",
+<<<<<<< HEAD
                     "{{exercise}}.ts",
+=======
+                    "{{exercise}}.test.ts",
+>>>>>>> 44e06de6e4224dbba6b2bcbbcd47c952143c5f90
                 ),
                 templateFile: path.join("templates", "test.hbs"),
             },
@@ -61,19 +65,18 @@ module.exports = (plop: NodePlopAPI) => {
                         id: uuidv4(),
                         name: exercise,
                         path: path.join(
-                            "..",
-                            "..",
+                            "./",
                             "exercises",
                             concept,
-                            `${exercise}.ts`,
+                            `${exercise}.js`,
                         ),
-                        hints: ["Add hints to help the user"],
                         testPath: path.join(
                             "..",
                             "__tests__",
                             concept,
                             `${exercise}.ts`,
                         ),
+                        hints: ["Add hints to help the user"],
                     });
                     return JSON.stringify(exerciseCatalogue, null, 2);
                 },

@@ -1,9 +1,21 @@
 [
     {
         "id": "4628740d-8ff9-44a9-ad72-eff2b9ca7990",
-        "name": "strings1",
-        "path": "../../exercises/strings/strings1.js",
-        "hints": ["Add hints to help the user"],
-        "testPath": "../__tests__/strings/strings1.ts"
+        "name": "numbers1",
+        "path": "./exercises/numbers/numbers1.js",
+        "testPath": "../__tests__/numbers/numbers1.test.ts",
+        "hints": [
+            "How would you add two numbers in real life?",
+            "How could you complete the function using a plus sign?"
+        ]
+    },
+    {
+        "id": "13f41f4d-368c-4fe6-9dfa-f2bd12166dde",
+        "name": "numbers2",
+        "path": "./exercises/numbers/numbers2.js",
+        "testPath": "../__tests__/numbers/numbers2.test.ts",
+        "hints": [
+            "JavaScript has built in Math functions. Could you use one to square the number?"
+        ]
     }
 ]
