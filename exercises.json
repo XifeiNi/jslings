@@ -16,6 +16,15 @@
             ],
             "currentHintIndex": 0,
             "status": "PENDING"
+        },
+        {
+            "name": "numbers2",
+            "path": "exercises/numbers/numbers2.js",
+            "hints": [
+                "JavaScript has built in Math functions. Could you use one to square the number?"
+            ],
+            "currentHintIndex": 0,
+            "status": "PENDING"
         }
     ]
 }
