@@ -12,5 +12,5 @@ const square = (a) => {
 // DO NOT EDIT BELOW THIS LINE
 
 module.exports = {
-    sum,
+    square,
 };
