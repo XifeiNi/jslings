@@ -3,7 +3,18 @@
         {
             "name": "strings1",
             "path": "exercises/strings/strings1.js",
-            "hints": ["Add your hint here"],
+            "hints": [
+                "Which method can you use to convert the strings's case?"
+            ],
+            "currentHintIndex": 0,
+            "status": "PENDING"
+        },
+        {
+            "name": "strings2",
+            "path": "exercises/strings/strings1.js",
+            "hints": [
+                "Which property can you use to find string length?"
+            ],
             "currentHintIndex": 0,
             "status": "PENDING"
         },
