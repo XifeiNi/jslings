@@ -6,24 +6,24 @@ import { UserData } from "./user.types";
  */
 export interface CodeEngineInterface {
     userdata: UserData;
-    database: Map<string, Exercise>
+    database: Exercise[];
     minifiedCode?: string;
     /**
      * Checks the syntax of provided code. Use of Terser also minifies the code which we can use for further analysis
      */
     minifyCodeAndCheckSyntax(): Promise<void>;
 
-    watchForChanges(): void;
+    runTest(): void;
 }
 
 /**
  * Implements the err returned by Terser
  */
 export interface MinifyError extends Error {
-    name: string,
-    message: string,
-    filename?: string,
-    line?: number, 
-    col?: number, 
-    pos?: number
+    name: string;
+    message: string;
+    filename?: string;
+    line?: number;
+    col?: number;
+    pos?: number;
 }
