@@ -19,7 +19,7 @@ program
         console.log("Examples:");
         console.log("");
         console.log("  $ jslings watch");
-        console.log("  $ jslings reset");
+        console.log("  $ jslings clear");
     });
 
 program

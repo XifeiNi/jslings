@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import Presentation from "./Presentation";
 import {
     isFilePresent,
@@ -25,19 +25,11 @@ const Landing: React.FC = () => {
                 ".userdata.json",
             ),
         );
-        const reload = useCallback(() => {
-            setUserdata(
-                loadJSONDataFromFileIfPresentElseCreateFileAndLoad<UserData>(
-                    ".",
-                    ".userdata.json",
-                ),
-            );
-        }, [userdata]);
         return (
             <Presentation
                 userdata={userdata}
                 database={database}
-                reload={reload}
+                setUserData={setUserdata}
             />
         );
     } catch (err) {

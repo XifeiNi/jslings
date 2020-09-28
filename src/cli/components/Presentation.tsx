@@ -2,13 +2,17 @@ import React from "react";
 import { Text, Box, useApp, useInput } from "ink";
 import { UserData } from "../../types/user.types";
 import { Exercise } from "../../types/exercises.types";
-import { useInteractionReducer } from "../utils/cli";
 import { Command } from "../../types/cli.types";
+import { writeFileToPath } from "../utils/fileSystem";
+import { CodeEngine } from "../engine/code-engine";
+import { completeExercise } from "../utils/user";
+import chalk from "chalk";
+import produce from "immer";
 
 interface PresentationInterface {
     userdata: UserData;
     database: Exercise[];
-    reload: () => void;
+    setUserData: React.Dispatch<React.SetStateAction<UserData>>;
 }
 
 interface CommandListProps {
@@ -65,10 +69,10 @@ const CurrentItem: React.FC<CurrentItemsInterface> = ({ userdata }) => {
         return (
             <Box
                 flexDirection="column"
-                alignItems="center"
+                alignItems="stretch"
                 paddingLeft={10}
                 paddingRight={10}>
-                <Text color="yellowBright">Hints shown so far</Text>
+                <Text color="yellowBright">Hints!</Text>
                 {hintsAlreadyShown.map((hint, idx) => (
                     <Text color="yellow" key={idx}>
                         {idx + 1}. {hint}
@@ -83,7 +87,7 @@ const CurrentItem: React.FC<CurrentItemsInterface> = ({ userdata }) => {
             <Text color="yellow">{userdata.current.info.name}</Text>
             {hintsAlreadyShown.length > 0
                 ? hintsPresentationalComponent(hintsAlreadyShown)
-                : ""}
+                : null}
         </Box>
     );
 };
@@ -120,20 +124,72 @@ const IncompleteItems: React.FC<IncompleteItemsInterface> = ({
 const Presentation: React.FC<PresentationInterface> = ({
     userdata,
     database,
-    reload,
+    setUserData,
 }) => {
     const { exit } = useApp();
-    const [state, dispatch] = useInteractionReducer(userdata, database);
+    const keyboardCommands: Map<string, Command> = new Map([
+        [
+            "q",
+            {
+                key: "q",
+                name: "quit",
+                handler: async ({ userdata }) => {
+                    writeFileToPath<UserData>(userdata, ".", ".userdata.json");
+                    exit();
+                },
+            },
+        ],
+        [
+            "c",
+            {
+                key: "c",
+                name: "check code",
+                handler: async ({ userdata, database }) => {
+                    const codeEngine = new CodeEngine(userdata, database);
+                    try {
+                        codeEngine.minifyCodeAndCheckSyntax();
+                        await codeEngine.runTest();
+                        setUserData(
+                            completeExercise(
+                                userdata,
+                                userdata.current.id,
+                                database,
+                            ) as UserData,
+                        );
+                    } catch (err) {
+                        console.log(chalk.red(err.message));
+                    }
+                },
+            },
+        ],
+        [
+            "h",
+            {
+                key: "h",
+                name: "show hint",
+                handler: async ({ userdata }) => {
+                    if (
+                        userdata.current.currentHintIndex >=
+                        userdata.current.info.hints.length
+                    ) {
+                        console.log(
+                            chalk.red("You have exhausted all your hints"),
+                        );
+                    } else {
+                        setUserData(
+                            produce(userdata, (draftUserData) => {
+                                draftUserData.current.currentHintIndex += 1;
+                                return draftUserData;
+                            }) as UserData,
+                        );
+                    }
+                },
+            },
+        ],
+    ]);
 
-    useInput((input, key) => {
-        if (input === "q") {
-            exit();
-        } else {
-            dispatch({
-                type: "key",
-                payload: { key: input, dispatch, reload },
-            });
-        }
+    useInput((input, _) => {
+        keyboardCommands.get(input)?.handler({ userdata, database });
     });
 
     return (
@@ -152,9 +208,7 @@ const Presentation: React.FC<PresentationInterface> = ({
                     database={database}
                 />
             </Box>
-            <CommandList
-                commands={Array.from(state.keyboardCommands.values())}
-            />
+            <CommandList commands={Array.from(keyboardCommands.values())} />
         </Box>
     );
 };
