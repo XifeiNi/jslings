@@ -44,11 +44,7 @@ module.exports = (plop: NodePlopAPI) => {
                     "..",
                     "__tests__",
                     "{{concept}}",
-<<<<<<< HEAD
-                    "{{exercise}}.ts",
-=======
                     "{{exercise}}.test.ts",
->>>>>>> 44e06de6e4224dbba6b2bcbbcd47c952143c5f90
                 ),
                 templateFile: path.join("templates", "test.hbs"),
             },

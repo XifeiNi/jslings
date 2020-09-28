@@ -36,11 +36,11 @@ export class CodeEngine implements CodeEngineInterface {
     /**
      * Jest runner watching for changes in our script which consumes the user's code
      */
-    runTest() {
+    async runTest() {
         // Config for the Jest test instance needs to be provided as is in an array
         const args: string[] = [this.userdata.current.info.testPath];
         try {
-            run(args);
+            return await run(args);
         } catch (err) {
             throw err;
         }

@@ -27,6 +27,96 @@ const CommandList: React.FC<CommandListProps> = ({ commands }) => (
     </Box>
 );
 
+interface CompleteItemsInterface {
+    ids: string[];
+    database: Exercise[];
+}
+
+const CompleteItems: React.FC<CompleteItemsInterface> = ({ ids, database }) => {
+    return (
+        <Box flexDirection="column" alignItems="flex-start" paddingRight={10}>
+            <Text color="greenBright">Completed Exercises</Text>
+            {ids.map((id, idx) => {
+                // Should be unique, hence can access 0th element
+                const { name } = database.filter(
+                    (ex: Exercise) => ex.id === id,
+                )[0];
+                return (
+                    <Text color="green" key={id}>
+                        {idx + 1}. {name}
+                    </Text>
+                );
+            })}
+        </Box>
+    );
+};
+
+interface CurrentItemsInterface {
+    userdata: UserData;
+}
+
+const CurrentItem: React.FC<CurrentItemsInterface> = ({ userdata }) => {
+    // Will be unique, hence can access 0th element
+    const hintsAlreadyShown = userdata.current.info.hints.filter(
+        (_, idx) => idx < userdata.current.currentHintIndex,
+    );
+
+    const hintsPresentationalComponent = (hintsAlreadyShown: string[]) => {
+        return (
+            <Box
+                flexDirection="column"
+                alignItems="center"
+                paddingLeft={10}
+                paddingRight={10}>
+                <Text color="yellowBright">Hints shown so far</Text>
+                {hintsAlreadyShown.map((hint, idx) => (
+                    <Text color="yellow" key={idx}>
+                        {idx + 1}. {hint}
+                    </Text>
+                ))}
+            </Box>
+        );
+    };
+    return (
+        <Box flexDirection="column">
+            <Text color="yellowBright">Currently Solving</Text>
+            <Text color="yellow">{userdata.current.info.name}</Text>
+            {hintsAlreadyShown.length > 0
+                ? hintsPresentationalComponent(hintsAlreadyShown)
+                : ""}
+        </Box>
+    );
+};
+
+interface IncompleteItemsInterface {
+    completedIds: string[];
+    database: Exercise[];
+}
+
+const IncompleteItems: React.FC<IncompleteItemsInterface> = ({
+    completedIds,
+    database,
+}) => {
+    const remainingExercisesId = database
+        .map((exercise) => exercise.id)
+        .filter((id) => !completedIds.includes(id));
+    const remainingExercises = database.filter((exercise) =>
+        remainingExercisesId.includes(exercise.id),
+    );
+    return (
+        <Box flexDirection="column" alignItems="flex-end" paddingLeft={10}>
+            <Text color="redBright">Incomplete Exercises</Text>
+            {remainingExercises.map((exercise, idx) => {
+                return (
+                    <Text color="red" key={idx}>
+                        {idx + 1}. {exercise.name}
+                    </Text>
+                );
+            })}
+        </Box>
+    );
+};
+
 const Presentation: React.FC<PresentationInterface> = ({
     userdata,
     database,
@@ -46,88 +136,6 @@ const Presentation: React.FC<PresentationInterface> = ({
         }
     });
 
-    const decoratedCompleteItems = (ids: string[], database: Exercise[]) => {
-        return (
-            <Box
-                flexDirection="column"
-                alignItems="flex-start"
-                paddingRight={10}>
-                <Text color="greenBright">Completed Exercises</Text>
-                {ids.map((id, idx) => {
-                    // Should be unique, hence can access 0th element
-                    const { name } = database.filter(
-                        (ex: Exercise) => ex.id === id,
-                    )[0];
-                    return (
-                        <Text color="green" key={id}>
-                            {idx + 1}. {name}
-                        </Text>
-                    );
-                })}
-            </Box>
-        );
-    };
-    const decoratedCurrentItem = (userdata: UserData, database: Exercise[]) => {
-        // Will be unique, hence can access 0th element
-        const exerciseInDatabase = database.filter(
-            (exercise) => exercise.id === userdata.current.id,
-        )[0];
-        const hintsAlreadyShown = exerciseInDatabase.hints.filter(
-            (_, idx) => idx < userdata.current.currentHintIndex,
-        );
-
-        const hintsPresentationalComponent = (hintsAlreadyShown: string[]) => {
-            return (
-                <Box
-                    flexDirection="column"
-                    alignItems="center"
-                    paddingLeft={10}
-                    paddingRight={10}>
-                    <Text color="yellowBright">Hints shown so far</Text>
-                    {hintsAlreadyShown.map((hint, idx) => (
-                        <Text color="yellow" key={idx}>
-                            {idx + 1}. {hint}
-                        </Text>
-                    ))}
-                </Box>
-            );
-        };
-        return (
-            <Box flexDirection="column">
-                <Text color="yellowBright">Currently Solving</Text>
-                <Text color="yellow">{exerciseInDatabase.name}</Text>
-                {hintsAlreadyShown.length > 0 ? (
-                    hintsPresentationalComponent(hintsAlreadyShown)
-                ) : (
-                    <Text color="yellow">No hints shown so far</Text>
-                )}
-            </Box>
-        );
-    };
-    const decoratedIncompleteItems = (
-        completedIds: string[],
-        database: Exercise[],
-    ) => {
-        const remainingExercisesId = database
-            .map((exercise) => exercise.id)
-            .filter((id) => !completedIds.includes(id));
-        const remainingExercises = database.filter((exercise) =>
-            remainingExercisesId.includes(exercise.id),
-        );
-        return (
-            <Box flexDirection="column" alignItems="flex-end" paddingLeft={10}>
-                <Text color="redBright">Incomplete Exercises</Text>
-                {remainingExercises.map((exercise, idx) => {
-                    return (
-                        <Text color="red" key={idx}>
-                            {idx + 1}. {exercise.name}
-                        </Text>
-                    );
-                })}
-            </Box>
-        );
-    };
-
     return (
         <Box flexDirection="column">
             <Box marginY={1} marginLeft={1}>
@@ -137,9 +145,12 @@ const Presentation: React.FC<PresentationInterface> = ({
                 </Text>
             </Box>
             <Box flexDirection="row">
-                {decoratedCompleteItems(userdata.completed, database)}
-                {decoratedCurrentItem(userdata, database)}
-                {decoratedIncompleteItems(userdata.completed, database)}
+                <CompleteItems ids={userdata.completed} database={database} />
+                <CurrentItem userdata={userdata} />
+                <IncompleteItems
+                    completedIds={userdata.completed}
+                    database={database}
+                />
             </Box>
             <CommandList
                 commands={Array.from(state.keyboardCommands.values())}

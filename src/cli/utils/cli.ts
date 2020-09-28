@@ -21,11 +21,14 @@ export const stateForNormalMode = (state: State): State => {
                     key: "h",
                     name: "show hint",
                     handler: (state) => {
-                        console.log(
-                            state.userdata.current.info.hints[
-                                state.userdata.current.currentHintIndex
-                            ],
-                        );
+                        if (
+                            state.userdata.current.currentHintIndex >=
+                            state.userdata.current.info.hints.length
+                        ) {
+                            console.log(
+                                chalk.red("You have exhausted all your hints"),
+                            );
+                        }
                         writeFileToPath<UserData>(
                             state.userdata,
                             ".",
@@ -49,14 +52,15 @@ export const stateForNormalMode = (state: State): State => {
                 {
                     key: "c",
                     name: "check code",
-                    handler: (state) => {
+                    handler: async (state) => {
                         const codeEngine = new CodeEngine(
                             state.userdata,
                             state.database,
                         );
                         try {
                             codeEngine.minifyCodeAndCheckSyntax();
-                            codeEngine.runTest();
+                            const result = await codeEngine.runTest();
+                            console.log(result);
                             writeFileToPath<UserData>(
                                 state.userdata,
                                 ".",
