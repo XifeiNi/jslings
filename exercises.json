@@ -6,6 +6,16 @@
             "hints": ["Add your hint here"],
             "currentHintIndex": 0,
             "status": "PENDING"
+        },
+        {
+            "name": "numbers1",
+            "path": "exercises/numbers/numbers1.js",
+            "hints": [
+                "How would you add two numbers in real life?",
+                "How could you complete the function using a plus sign?"
+            ],
+            "currentHintIndex": 0,
+            "status": "PENDING"
         }
     ]
 }
