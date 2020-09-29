@@ -36,7 +36,6 @@
     },
     "scripts": {
         "jslings": "ts-node ./src/cli/index.ts",
-        "jslings:watch": "nodemon -x ts-node -e ts,tsx ./src/cli/index.ts",
         "build": "tsc",
         "typecheck": "tsc --noEmit",
         "test": "xo && jest",

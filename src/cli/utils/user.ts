@@ -1,11 +1,15 @@
+import { writeFileSync } from "fs";
 import produce from "immer";
 import nullthrows from "nullthrows";
+import path from "path";
 import { Exercise, Status } from "../../types/exercises.types";
 import { UserData } from "../../types/user.types";
 import {
     obtainStringifiedFileContents,
     jsonParsedFileContents,
     writeFileToPath,
+    listFiles,
+    isFilePresent,
 } from "../utils/fileSystem";
 
 /**
@@ -41,7 +45,7 @@ const returnNextIncompleteExercise = (
         if (idxOfCompleted !== database.length - 1) {
             return database[idxOfCompleted + 1];
         }
-        throw new Error("Congratulations! You have completed jslings");
+        throw new Error("Congratulations! You have completed jslings 🔥");
     }
     return database[0];
 };
@@ -79,15 +83,49 @@ export const completeExercise = (
  * As we require some setup for userdata, we need to consure we follow the correct format from the start
  */
 export const clearUserDataAndStartFresh = (database: Exercise[]) => {
-    const currentExercise = returnNextIncompleteExercise(database)!;
-    const data: UserData = {
-        completed: [],
-        current: {
-            info: currentExercise,
-            id: currentExercise.id,
-            currentHintIndex: 0,
-            status: Status.CURRENT,
-        },
-    };
-    writeFileToPath<UserData>(data, ".", ".userdata.json");
+    try {
+        const currentExercise = returnNextIncompleteExercise(database)!;
+        const data: UserData = {
+            completed: [],
+            current: {
+                info: currentExercise,
+                id: currentExercise.id,
+                currentHintIndex: 0,
+                status: Status.CURRENT,
+            },
+        };
+        writeFileToPath<UserData>(data, ".", ".userdata.json");
+        // TODO: Clear files automatically
+        const categories = listFiles(path.join(".", "exercises"));
+        categories.forEach((category) => {
+            const folderPath = path.join(".", "exercises", category);
+            const files = listFiles(folderPath, false);
+            files.forEach((file) => {
+                if (isFilePresent(folderPath, file)) {
+                    const data = obtainStringifiedFileContents(
+                        path.join(folderPath, file),
+                    );
+                    let startLineNumber = data.split("\n").length;
+                    let endLineNumber = 0;
+                    data.split("\n").map((line, idx) => {
+                        if (line.includes("=>")) {
+                            startLineNumber = idx;
+                        } else if (line.includes("return")) {
+                            endLineNumber = idx;
+                        }
+                    });
+                    const newContents = data
+                        .split("\n")
+                        .filter(
+                            (_, idx) =>
+                                idx <= startLineNumber || idx >= endLineNumber,
+                        )
+                        .join("\n");
+                    writeFileSync(path.join(folderPath, file), newContents);
+                }
+            });
+        });
+    } catch (err) {
+        throw err;
+    }
 };
