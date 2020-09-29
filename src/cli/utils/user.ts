@@ -107,14 +107,23 @@ export const clearUserDataAndStartFresh = (database: Exercise[]) => {
                     );
                     let startLineNumber = data.split("\n").length;
                     let endLineNumber = 0;
-                    data.split("\n").map((line, idx) => {
-                        if (line.includes("=>")) {
-                            startLineNumber = idx;
-                        } else if (line.includes("return")) {
-                            endLineNumber = idx;
-                        }
-                    });
-                    const newContents = data
+                    const newData = data
+                        .split("\n")
+                        .map((line, idx) => {
+                            if (line.includes("=>")) {
+                                startLineNumber = idx;
+                            } else if (line.includes("return")) {
+                                endLineNumber = idx;
+                                line = line.substring(
+                                    0,
+                                    line.indexOf("return") + "return".length,
+                                );
+                                line += ";";
+                            }
+                            return line;
+                        })
+                        .join("\n");
+                    const newContents = newData
                         .split("\n")
                         .filter(
                             (_, idx) =>

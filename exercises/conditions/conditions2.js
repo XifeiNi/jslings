@@ -1,8 +1,8 @@
 // conditions2.js
 // JavaScript allows us to write conditional statements in one line with the ternary operator.
-// Make the animalSound function return the same thing as `conditions`, but on one line.
+// Make the animalSound function ternary / one-line
 // Make the function WOOF if the animal is a dog.
-// Make the function return MEOW if the animal is a cat.
+// Make the function MEOW if the animal is a cat.
 
 // Press the key 'h' for hints!
 

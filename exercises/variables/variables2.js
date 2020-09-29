@@ -3,9 +3,8 @@
 // Press the key 'h' for hints!
 
 // DO NOT EDIT ABOVE THIS LINE
-"use strict";
 const variableDeclaration = (a) => {
-    return x;
+    return;
 };
 
 // DO NOT EDIT BELOW THIS LINE
