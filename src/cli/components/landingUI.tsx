@@ -12,16 +12,21 @@ const Landing: React.FC = () => {
     try {
         const [database, _] = useState(
             loadJSONDataFromFileIfPresentElseCreateFileAndLoad<Exercise[]>(
-                ".",
+                process.cwd(),
                 "exercises.json",
             ),
         );
-        if (!(isFilePresent(".", ".userdata.json") === FileStatus.SUCCESS)) {
+        if (
+            !(
+                isFilePresent(process.cwd(), ".userdata.json") ===
+                FileStatus.SUCCESS
+            )
+        ) {
             clearUserDataAndStartFresh(database);
         }
         const [userdata, setUserdata] = useState(
             loadJSONDataFromFileIfPresentElseCreateFileAndLoad<UserData>(
-                ".",
+                process.cwd(),
                 ".userdata.json",
             ),
         );

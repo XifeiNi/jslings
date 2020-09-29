@@ -167,7 +167,11 @@ const Presentation: React.FC<PresentationInterface> = ({
                 key: "q",
                 name: "quit",
                 handler: async ({ userdata }) => {
-                    writeFileToPath<UserData>(userdata, ".", ".userdata.json");
+                    writeFileToPath<UserData>(
+                        userdata,
+                        process.cwd(),
+                        ".userdata.json",
+                    );
                     exit();
                 },
             },
