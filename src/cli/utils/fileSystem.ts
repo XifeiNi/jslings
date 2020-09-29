@@ -14,7 +14,7 @@ export const isFilePresent = (
     try {
         const files = fs
             .readdirSync(path)
-            .map((file) => file.startsWith(partialFileName));
+            .filter((file) => file.startsWith(partialFileName));
         if (files.length > 0) {
             if (files.length === 1) {
                 return FileStatus.SUCCESS;

@@ -37,7 +37,7 @@ program
     .action(() => {
         const database = loadJSONDataFromFileIfPresentElseCreateFileAndLoad<
             Exercise[]
-        >(".", "exercises.json");
+        >(process.cwd(), "exercises.json");
         clearUserDataAndStartFresh(database);
         console.log(greenBright("Reset successful"));
     });

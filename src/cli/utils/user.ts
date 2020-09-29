@@ -94,11 +94,11 @@ export const clearUserDataAndStartFresh = (database: Exercise[]) => {
                 status: Status.CURRENT,
             },
         };
-        writeFileToPath<UserData>(data, ".", ".userdata.json");
+        writeFileToPath<UserData>(data, process.cwd(), ".userdata.json");
         // TODO: Clear files automatically
-        const categories = listFiles(path.join(".", "exercises"));
+        const categories = listFiles(path.join(process.cwd(), "exercises"));
         categories.forEach((category) => {
-            const folderPath = path.join(".", "exercises", category);
+            const folderPath = path.join(process.cwd(), "exercises", category);
             const files = listFiles(folderPath, false);
             files.forEach((file) => {
                 if (isFilePresent(folderPath, file)) {
