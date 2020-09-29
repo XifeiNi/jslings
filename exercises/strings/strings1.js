@@ -8,7 +8,7 @@
 // DO NOT EDIT ABOVE THIS LINE
 
 const uppercase = (text) => {
-    return text.toUpperCase();
+    return text;
 };
 
 // DO NOT EDIT BELOW THIS LINE

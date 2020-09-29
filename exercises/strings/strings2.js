@@ -6,7 +6,7 @@
 // DO NOT EDIT ABOVE THIS LINE
 
 const strlen = (text) => {
-    return;
+    return 0;
 };
 
 // DO NOT EDIT BELOW THIS LINE
