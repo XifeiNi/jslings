@@ -8,7 +8,7 @@ import { CodeEngine } from "../engine/code-engine";
 import { completeExercise } from "../utils/user";
 import chalk from "chalk";
 import * as path from "path";
-import produce, { current } from "immer";
+import produce from "immer";
 
 interface PresentationInterface {
     userdata: UserData;
@@ -184,8 +184,6 @@ const Presentation: React.FC<PresentationInterface> = ({
                 handler: async ({ userdata, database }) => {
                     const codeEngine = new CodeEngine(userdata, database);
                     try {
-                        codeEngine.minifyCodeAndCheckSyntax();
-
                         // Get exit code from Jest
                         const result = await codeEngine.runTest();
 

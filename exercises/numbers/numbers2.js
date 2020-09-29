@@ -6,7 +6,7 @@
 // DO NOT EDIT ABOVE THIS LINE
 
 const square = (a) => {
-    return a;
+    return;
 };
 
 // DO NOT EDIT BELOW THIS LINE

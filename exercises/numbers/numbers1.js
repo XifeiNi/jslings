@@ -1,13 +1,13 @@
 // numbers1.js
 // Doing math in JavaScript is very similar to doing math on paper!
-// Make our `sum` function return the sum of two numbers.
+// Given two numbers, get their sum using the 'sum' function
 
 // Press the key 'h' for hints!
 
 // DO NOT EDIT ABOVE THIS LINE
 
 const sum = (a, b) => {
-    return a;
+    return;
 };
 
 // DO NOT EDIT BELOW THIS LINE
