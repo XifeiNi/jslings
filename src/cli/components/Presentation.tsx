@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { Text, Box, useApp, useInput } from "ink";
 import { UserData } from "../../types/user.types";
-import { Exercise } from "../../types/exercises.types";
+import { Exercise, Status } from "../../types/exercises.types";
 import { Command } from "../../types/cli.types";
 import { writeFileToPath } from "../utils/fileSystem";
 import { CodeEngine } from "../engine/code-engine";
 import { completeExercise } from "../utils/user";
 import chalk from "chalk";
 import * as path from "path";
-import produce from "immer";
+import produce, { current } from "immer";
 
 interface PresentationInterface {
     userdata: UserData;
@@ -201,7 +201,21 @@ const Presentation: React.FC<PresentationInterface> = ({
 
                         setUserData({ ...newUserdata });
                     } catch (err) {
-                        console.log(chalk.red(err.message));
+                        if (
+                            err.message ===
+                            "Congratulations! You have completed jslings 🔥"
+                        ) {
+                            console.log(chalk.green(err.message));
+                            setUserData({
+                                completed: database.map((ex) => ex.id),
+                                current: {
+                                    ...userdata.current,
+                                    status: Status.DONE,
+                                },
+                            });
+                        } else {
+                            console.log(chalk.red(err.message));
+                        }
                     }
                 },
             },
@@ -248,11 +262,19 @@ const Presentation: React.FC<PresentationInterface> = ({
             </Box>
             <Box flexDirection="row">
                 <CompleteItems ids={userdata.completed} database={database} />
-                <CurrentItem userdata={userdata} />
-                <IncompleteItems
-                    completedIds={userdata.completed}
-                    database={database}
-                />
+                {userdata.current.status !== Status.DONE ? (
+                    <Box>
+                        <CurrentItem userdata={userdata} />
+                        <IncompleteItems
+                            completedIds={userdata.completed}
+                            database={database}
+                        />
+                    </Box>
+                ) : (
+                    <Text color="greenBright">
+                        Congratulations! You have completed jslings 🔥
+                    </Text>
+                )}
             </Box>
             <CommandList commands={Array.from(keyboardCommands.values())} />
         </Box>
