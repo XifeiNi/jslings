@@ -79,7 +79,7 @@ const CurrentItem: React.FC<CurrentItemsInterface> = ({ userdata }) => {
                 <Text color="yellowBright">Hints {"❗❗"}</Text>
                 {hintsAlreadyShown.map((hint, idx) => (
                     <Text color="yellow" key={idx}>
-                        {"😲"} {hint}
+                        {"🤔😲"} {hint}
                         {"\n"}
                     </Text>
                 ))}
