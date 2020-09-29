@@ -1,4 +1,4 @@
-const { uppercase } = require('../../../exercises/strings/strings2.js');
+const { uppercase } = require('../../../exercises/strings/strings1.js');
 
 describe("strings1", () => {
     it("can return string in uppercase", () => {

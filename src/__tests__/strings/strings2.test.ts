@@ -1,4 +1,4 @@
-const { strlen } = require('../../../exercises/strings/strings1.js');
+const { strlen } = require('../../../exercises/strings/strings2.js');
 
 describe("strings2", () => {
     it("can find length of string", () => {
