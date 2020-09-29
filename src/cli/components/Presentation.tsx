@@ -210,8 +210,8 @@ const Presentation: React.FC<PresentationInterface> = ({
         <Box flexDirection="column">
             <Box marginY={1} marginLeft={1}>
                 <Text bold backgroundColor="cyan" color="#000">
-                    {" "}
-                    JSLings{" "}
+                    {"🐙"}
+                    JSLings{"🐙"}
                 </Text>
             </Box>
             <Box flexDirection="row">
