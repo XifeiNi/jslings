@@ -3,7 +3,9 @@
         {
             "name": "strings1",
             "path": "exercises/strings/strings1.js",
-            "hints": ["Add your hint here"],
+            "hints": [
+                "Add your hint here"
+            ],
             "currentHintIndex": 0,
             "status": "PENDING"
         },
@@ -42,6 +44,25 @@
             "hints": [
                 "Use the ternary operator to shorten the lines of code in the previous condition exercise",
                 "Make sure you what your return is in capital letters (see the toUpperCase method)"
+            ],
+            "currentHintIndex": 0,
+            "status": "PENDING"
+        },
+        {
+            "name": "variables1",
+            "path": "exercises/variables/variables1.js",
+            "hints": [
+                "Can const variable be reassigned?"
+            ],
+            "currentHintIndex": 0,
+            "status": "PENDING"
+        },
+        {
+            "name": "variables2",
+            "path": "exercises/variables/variables2.js",
+            "hints": [
+                "Make sure the variable is properly declared",
+                "is there any keywords we use to declare variable?"
             ],
             "currentHintIndex": 0,
             "status": "PENDING"
