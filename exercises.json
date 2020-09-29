@@ -56,6 +56,25 @@
             ],
             "currentHintIndex": 0,
             "status": "PENDING"
+        },
+        {
+            "name": "variables1",
+            "path": "exercises/variables/variables1.js",
+            "hints": [
+                "Can const variable be reassigned?"
+            ],
+            "currentHintIndex": 0,
+            "status": "PENDING"
+        },
+        {
+            "name": "variables2",
+            "path": "exercises/variables/variables2.js",
+            "hints": [
+                "Make sure the variable is properly declared",
+                "is there any keywords we use to declare variable?"
+            ],
+            "currentHintIndex": 0,
+            "status": "PENDING"
         }
     ]
 }
