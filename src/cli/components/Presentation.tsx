@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, Box, useApp, useInput } from "ink";
 import { UserData } from "../../types/user.types";
 import { Exercise } from "../../types/exercises.types";
@@ -127,6 +127,11 @@ const Presentation: React.FC<PresentationInterface> = ({
     setUserData,
 }) => {
     const { exit } = useApp();
+
+    useEffect(() => {
+        // force a rerender
+    }, [userdata]);
+
     const keyboardCommands: Map<string, Command> = new Map([
         [
             "q",
@@ -148,14 +153,21 @@ const Presentation: React.FC<PresentationInterface> = ({
                     const codeEngine = new CodeEngine(userdata, database);
                     try {
                         codeEngine.minifyCodeAndCheckSyntax();
-                        await codeEngine.runTest();
-                        setUserData(
-                            completeExercise(
-                                userdata,
-                                userdata.current.id,
-                                database,
-                            ) as UserData,
-                        );
+
+                        // Get exit code from Jest
+                        const result = await codeEngine.runTest();
+
+                        // If Jest failed, the test is not complete
+                        const newUserdata =
+                            result === 1
+                                ? userdata
+                                : (completeExercise(
+                                      userdata,
+                                      userdata.current.id,
+                                      database,
+                                  ) as UserData);
+
+                        setUserData({ ...newUserdata });
                     } catch (err) {
                         console.log(chalk.red(err.message));
                     }
@@ -173,7 +185,9 @@ const Presentation: React.FC<PresentationInterface> = ({
                         userdata.current.info.hints.length
                     ) {
                         console.log(
-                            chalk.red("You have exhausted all your hints"),
+                            chalk.red(
+                                "Sorry, we don't have any more hints for you.",
+                            ),
                         );
                     } else {
                         setUserData(

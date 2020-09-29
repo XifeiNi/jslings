@@ -1,6 +1,7 @@
 import nullthrows from "nullthrows";
 import { minify, MinifyOutput } from "terser";
 import { run } from "jest-cli";
+import childprocess from "child_process";
 import {
     MinifyError,
     CodeEngineInterface,
@@ -36,11 +37,13 @@ export class CodeEngine implements CodeEngineInterface {
     /**
      * Jest runner watching for changes in our script which consumes the user's code
      */
-    async runTest() {
+    async runTest(): Promise<Number | null> {
         // Config for the Jest test instance needs to be provided as is in an array
-        const args: string[] = [this.userdata.current.info.testPath];
+        const args: string[] = [this.userdata.current.info.testPath, '--detectOpenHandles'];
         try {
-            return await run(args);
+            const child = childprocess.spawnSync("jest", args, { encoding: 'utf8' });
+            await run(args);
+            return child.status;
         } catch (err) {
             throw err;
         }
