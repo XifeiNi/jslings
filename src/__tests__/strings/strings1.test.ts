@@ -1,1 +1,7 @@
-// Add strings1 test test
+const { uppercase } = require('../../../exercises/strings/strings2.js');
+
+describe("strings1", () => {
+    it("can return string in uppercase", () => {
+        expect(uppercase("I am a string")).toBe("I AM A STRING");
+    });
+});
