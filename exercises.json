@@ -1,5 +1,19 @@
 [
     {
+        "name": "strings1",
+        "path": "./exercises/strings/strings1.js",
+        "testPath": "../__tests__/strings/strings1.test.ts",
+        "hints": ["Which method can you use to convert the strings's case?"]
+    },
+    {
+        "name": "strings2",
+        "path": "./exercises/strings/strings1.js",
+        "testPath": "../__tests__/strings/strings1.test.ts",
+        "hints": ["Which property can you use to find string length?"],
+        "currentHintIndex": 0,
+        "status": "PENDING"
+    },
+    {
         "id": "4628740d-8ff9-44a9-ad72-eff2b9ca7990",
         "name": "numbers1",
         "path": "./exercises/numbers/numbers1.js",
@@ -16,6 +30,39 @@
         "testPath": "../__tests__/numbers/numbers2.test.ts",
         "hints": [
             "JavaScript has built in Math functions. Could you use one to square the number?"
+        ]
+    },
+    {
+        "name": "conditions1",
+        "path": "./exercises/conditions/conditions1.js",
+        "testPath": "../__tests__/conditions/conditions1.test.ts",
+        "hints": [
+            "Conditions are usually written as if/else statements",
+            "Make sure you what your return is in capital letters (see the toUpperCase method)"
+        ]
+    },
+    {
+        "name": "conditions2",
+        "path": "./exercises/conditions/conditions2.js",
+        "testPath": "../__tests__/conditions/conditions2.test.ts",
+        "hints": [
+            "Use the ternary operator to shorten the lines of code in the previous condition exercise",
+            "Make sure you what your return is in capital letters (see the toUpperCase method)"
+        ]
+    },
+    {
+        "name": "variables1",
+        "path": "./exercises/variables/variables1.js",
+        "testPath": "../__tests__/variables/variables1.test.ts",
+        "hints": ["Can const variable be reassigned?"]
+    },
+    {
+        "name": "variables2",
+        "path": "./exercises/variables/variables2.js",
+        "testPath": "../__tests__/variables/variables2.test.ts",
+        "hints": [
+            "Make sure the variable is properly declared",
+            "is there any keywords we use to declare variable?"
         ]
     }
 ]
