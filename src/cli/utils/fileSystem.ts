@@ -29,14 +29,20 @@ export const isFilePresent = (
 };
 
 /**
- * A utility function to list all the file names present inside a folder
+ * A utility function to list all the files present at path
  * @param source Path to look into
+ * @param showDirectoriesOnly Flag to include only directories
  */
-export const listFiles = (source: string): string[] => {
+export const listFiles = (
+    source: string,
+    showDirectoriesOnly: boolean = true,
+): string[] => {
     try {
         return fs
             .readdirSync(source, { withFileTypes: true })
-            .filter((dirent) => dirent.isDirectory())
+            .filter((dirent) =>
+                showDirectoriesOnly ? dirent.isDirectory() : true,
+            )
             .map((dirent) => dirent.name);
     } catch (_) {
         return [];

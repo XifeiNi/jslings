@@ -1,11 +1,8 @@
 // variables1.js
 
 // Press the key 'h' for hints!
-
-"use strict";
+// DO NOT EDIT ABOVE THIS LINE
 const constVariable = (a) => {
-    const x = a;
-    x = 2;
     return x;
 };
 

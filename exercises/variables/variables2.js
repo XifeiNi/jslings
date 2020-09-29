@@ -2,11 +2,9 @@
 
 // Press the key 'h' for hints!
 
-// I AM NOT DONE
-
+// DO NOT EDIT ABOVE THIS LINE
 "use strict";
 const variableDeclaration = (a) => {
-    x = a;
     return x;
 };
 

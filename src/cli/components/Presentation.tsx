@@ -7,6 +7,7 @@ import { writeFileToPath } from "../utils/fileSystem";
 import { CodeEngine } from "../engine/code-engine";
 import { completeExercise } from "../utils/user";
 import chalk from "chalk";
+import * as path from "path";
 import produce from "immer";
 
 interface PresentationInterface {
@@ -39,15 +40,18 @@ interface CompleteItemsInterface {
 const CompleteItems: React.FC<CompleteItemsInterface> = ({ ids, database }) => {
     return (
         <Box flexDirection="column" alignItems="flex-start" paddingRight={10}>
-            <Text color="greenBright">Completed Exercises</Text>
-            {ids.map((id, idx) => {
+            <Text color="greenBright" underline={true}>
+                Completed Exercises {"✅"}
+            </Text>
+            <Text>{"\n"}</Text>
+            {ids.map((id, _) => {
                 // Should be unique, hence can access 0th element
                 const { name } = database.filter(
                     (ex: Exercise) => ex.id === id,
                 )[0];
                 return (
                     <Text color="green" key={id}>
-                        {idx + 1}. {name}
+                        {"[x]"} {name}
                     </Text>
                 );
             })}
@@ -72,10 +76,11 @@ const CurrentItem: React.FC<CurrentItemsInterface> = ({ userdata }) => {
                 alignItems="stretch"
                 paddingLeft={10}
                 paddingRight={10}>
-                <Text color="yellowBright">Hints!</Text>
+                <Text color="yellowBright">Hints {"❗❗"}</Text>
                 {hintsAlreadyShown.map((hint, idx) => (
                     <Text color="yellow" key={idx}>
-                        {idx + 1}. {hint}
+                        {"😲"} {hint}
+                        {"\n"}
                     </Text>
                 ))}
             </Box>
@@ -83,8 +88,24 @@ const CurrentItem: React.FC<CurrentItemsInterface> = ({ userdata }) => {
     };
     return (
         <Box flexDirection="column">
-            <Text color="yellowBright">Currently Solving</Text>
-            <Text color="yellow">{userdata.current.info.name}</Text>
+            <Text color="yellowBright" underline={true}>
+                Currently Solving{"⏱️"}
+            </Text>
+            <Text>{"\n"}</Text>
+            <Text color="yellowBright" italic={true}>
+                Category :{" "}
+                {
+                    userdata.current.info.testPath.split(path.sep)[
+                        userdata.current.info.testPath.split(path.sep).length -
+                            2
+                    ]
+                }
+            </Text>
+            <Text>{"\n"}</Text>
+            <Text color="yellow">
+                Exercise Name : {userdata.current.info.name}
+            </Text>
+            <Text>{"\n"}</Text>
             {hintsAlreadyShown.length > 0
                 ? hintsPresentationalComponent(hintsAlreadyShown)
                 : null}
@@ -108,12 +129,19 @@ const IncompleteItems: React.FC<IncompleteItemsInterface> = ({
         remainingExercisesId.includes(exercise.id),
     );
     return (
-        <Box flexDirection="column" alignItems="flex-end" paddingLeft={10}>
-            <Text color="redBright">Incomplete Exercises</Text>
+        <Box
+            flexDirection="column"
+            alignItems="flex-end"
+            paddingLeft={10}
+            alignSelf="center">
+            <Text color="redBright" underline={true}>
+                Incomplete Exercises {"👀"}
+            </Text>
+            <Text>{"\n"}</Text>
             {remainingExercises.map((exercise, idx) => {
                 return (
                     <Text color="red" key={idx}>
-                        {idx + 1}. {exercise.name}
+                        {"-"} {exercise.name}
                     </Text>
                 );
             })}
