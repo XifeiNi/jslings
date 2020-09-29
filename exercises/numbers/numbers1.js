@@ -2,7 +2,7 @@
 // Doing math in JavaScript is very similar to doing math on paper!
 // Make our `sum` function return the sum of two numbers.
 
-// Execute `yarn jslings hint numbers1` for hints!
+// Press the key 'h' for hints!
 
 // DO NOT EDIT ABOVE THIS LINE
 

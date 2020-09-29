@@ -1,80 +1,74 @@
-{
-    "exercises": [
-        {
-            "name": "strings1",
-            "path": "exercises/strings/strings1.js",
-            "hints": [
-                "Which method can you use to convert the strings's case?"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        },
-        {
-            "name": "strings2",
-            "path": "exercises/strings/strings1.js",
-            "hints": [
-                "Which property can you use to find string length?"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        },
-        {
-            "name": "numbers1",
-            "path": "exercises/numbers/numbers1.js",
-            "hints": [
-                "How would you add two numbers in real life?",
-                "How could you complete the function using a plus sign?"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        },
-        {
-            "name": "numbers2",
-            "path": "exercises/numbers/numbers2.js",
-            "hints": [
-                "JavaScript has built in Math functions. Could you use one to square the number?"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        },
-        {
-            "name": "conditions1",
-            "path": "exercises/conditions/conditions1.js",
-            "hints": [
-                "Conditions are usually written as if/else statements",
-                "Make sure you what your return is in capital letters (see the toUpperCase method)"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        },
-        {
-            "name": "conditions2",
-            "path": "exercises/conditions/conditions2.js",
-            "hints": [
-                "Use the ternary operator to shorten the lines of code in the previous condition exercise",
-                "Make sure you what your return is in capital letters (see the toUpperCase method)"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        },
-        {
-            "name": "variables1",
-            "path": "exercises/variables/variables1.js",
-            "hints": [
-                "Can const variable be reassigned?"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        },
-        {
-            "name": "variables2",
-            "path": "exercises/variables/variables2.js",
-            "hints": [
-                "Make sure the variable is properly declared",
-                "is there any keywords we use to declare variable?"
-            ],
-            "currentHintIndex": 0,
-            "status": "PENDING"
-        }
-    ]
-}
+[
+    {
+        "id": "3e60fb97-7b38-4364-839f-dff794c323a5",
+        "name": "strings1",
+        "path": "./exercises/strings/strings1.js",
+        "testPath": "../__tests__/strings/strings1.test.ts",
+        "hints": ["Which method can you use to convert the strings's case?"]
+    },
+    {
+        "id": "30a63b5d-8a43-4583-a026-790444efd3fc",
+        "name": "strings2",
+        "path": "./exercises/strings/strings1.js",
+        "testPath": "../__tests__/strings/strings1.test.ts",
+        "hints": ["Which property can you use to find string length?"],
+        "currentHintIndex": 0,
+        "status": "PENDING"
+    },
+    {
+        "id": "4628740d-8ff9-44a9-ad72-eff2b9ca7990",
+        "name": "numbers1",
+        "path": "./exercises/numbers/numbers1.js",
+        "testPath": "../__tests__/numbers/numbers1.test.ts",
+        "hints": [
+            "How would you add two numbers in real life?",
+            "How could you complete the function using a plus sign?"
+        ]
+    },
+    {
+        "id": "13f41f4d-368c-4fe6-9dfa-f2bd12166dde",
+        "name": "numbers2",
+        "path": "./exercises/numbers/numbers2.js",
+        "testPath": "../__tests__/numbers/numbers2.test.ts",
+        "hints": [
+            "JavaScript has built in Math functions. Could you use one to square the number?"
+        ]
+    },
+    {
+        "id": "020eed3e-673f-49d2-bd78-9ab2fd46889b",
+        "name": "conditions1",
+        "path": "./exercises/conditions/conditions1.js",
+        "testPath": "../__tests__/conditions/conditions1.test.ts",
+        "hints": [
+            "Conditions are usually written as if/else statements",
+            "Make sure you what your return is in capital letters (see the toUpperCase method)"
+        ]
+    },
+    {
+        "id": "7663cbc0-3c52-42c3-8702-d30a6ce5e316",
+        "name": "conditions2",
+        "path": "./exercises/conditions/conditions2.js",
+        "testPath": "../__tests__/conditions/conditions2.test.ts",
+        "hints": [
+            "Use the ternary operator to shorten the lines of code in the previous condition exercise",
+            "Make sure you what your return is in capital letters (see the toUpperCase method)"
+        ]
+    },
+    {
+        "id": "41dc36bd-6601-47fd-95be-3ff05d2f2094",
+        "name": "variables1",
+        "path": "./exercises/variables/variables1.js",
+        "testPath": "../__tests__/variables/variables1.test.ts",
+        "hints": ["Can const variable be reassigned?"]
+    },
+    {
+        "id": "c2a54842-b3fb-47bc-b3a0-adf86a681edb",
+        "name": "variables2",
+        "path": "./exercises/variables/variables2.js",
+        "testPath": "../__tests__/variables/variables2.test.ts",
+        "hints": [
+            "Make sure the variable is properly declared",
+            "is there any keywords we use to declare variable?"
+        ]
+    }
+]

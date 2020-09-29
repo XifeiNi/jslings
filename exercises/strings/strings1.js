@@ -3,7 +3,7 @@
 // All string methods return a new string. They don't modify the original string.
 // Use the appropriate string method to make the function return the string in uppercase.
 
-// Execute `yarn jslings hint strings2` for hints!
+// Press the key 'h' for hints!
 
 // DO NOT EDIT ABOVE THIS LINE
 
@@ -12,4 +12,4 @@ const uppercase = (text) => {
 };
 
 // DO NOT EDIT BELOW THIS LINE
-module.exports =  { uppercase };
+module.exports = { uppercase };

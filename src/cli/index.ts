@@ -3,8 +3,12 @@
 import React from "react";
 import { render } from "ink";
 import { Command } from "commander";
-
+import { clearUserDataAndStartFresh } from "../cli/utils/user";
 import Landing from "./components/landingUI";
+import { greenBright } from "chalk";
+import { loadJSONDataFromFileIfPresentElseCreateFileAndLoad } from "./utils/fileSystem";
+import { Exercise } from "../types/exercises.types";
+
 const program = new Command();
 
 program
@@ -15,20 +19,27 @@ program
         console.log("Examples:");
         console.log("");
         console.log("  $ jslings watch");
-        console.log("  $ jslings hint");
+        console.log("  $ jslings clear");
     });
 
 program
     .command("watch")
     .alias("w")
     .description("jslings interactive code testing UI")
-    .option("-t, --test <testName>", "path to the test")
-    .action(async ({ test }: Command) => {
-        render(
-            React.createElement(Landing, {
-                testFileName: test,
-            }),
-        );
+    .action(async () => {
+        render(React.createElement(Landing));
+    });
+
+program
+    .command("clear")
+    .alias("r")
+    .description("Clears all your userdata to start fresh")
+    .action(() => {
+        const database = loadJSONDataFromFileIfPresentElseCreateFileAndLoad<
+            Exercise[]
+        >(".", "exercises.json");
+        clearUserDataAndStartFresh(database);
+        console.log(greenBright("Reset successful"));
     });
 
 program.parse(process.argv);

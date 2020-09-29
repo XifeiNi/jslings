@@ -320,4 +320,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Mock Files
+src/cli/mock
+
+# User data
+.userdata.json
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,vim,visualstudiocode,intellij,react,node

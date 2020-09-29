@@ -1,9 +1,9 @@
 // variables2.js
-// 
 
-// Execute `yarn jslings hint variables2` for hints!
+// Press the key 'h' for hints!
 
 // I AM NOT DONE
+
 "use strict";
 const variableDeclaration = (a) => {
     x = a;
@@ -13,4 +13,4 @@ const variableDeclaration = (a) => {
 // DO NOT EDIT BELOW THIS LINE
 module.exports = {
     variableDeclaration,
-}
+};

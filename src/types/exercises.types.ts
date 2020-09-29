@@ -1,7 +1,7 @@
 /**
  * The status of all tests can be only among these types
  */
-enum Status {
+export enum Status {
     PENDING = "P",
     CURRENT = "C",
     DONE = "X",
@@ -19,17 +19,15 @@ export enum FileStatus {
 /**
  * Each exercise should follow this interface and contain these dataPoints
  */
-interface Exercise {
+export interface Exercise {
+    id: string;
     name: string;
     path: string;
     hints: [string];
-    currentHintIndex: number;
-    status: Status;
+    testPath: string;
 }
 
 /**
  * Test file points to the location of the file on the filesystem
  */
-export interface TestFile {
-    testFileName: string;
-}
+export type TestFile = { testFileName: string };

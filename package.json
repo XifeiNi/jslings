@@ -16,7 +16,10 @@
         "@babel/register": "^7.11.5",
         "@types/commander": "^2.12.2",
         "@types/jest": "^26.0.14",
+        "@types/jest-cli": "^24.3.0",
         "@types/node": "^14.11.2",
+        "@types/terser": "^3.12.0",
+        "@types/uuid": "^8.3.0",
         "chalk": "^4.1.0",
         "eslint-config-xo-react": "^0.23.0",
         "eslint-plugin-jest": "^24.0.2",
@@ -37,7 +40,7 @@
         "build": "tsc",
         "typecheck": "tsc --noEmit",
         "test": "xo && jest",
-        "generate": "plop"
+        "generate": "plop --plopfile ./src/generator/plopfile.ts"
     },
     "files": [
         "dist/ui.js",
@@ -63,9 +66,14 @@
     },
     "dependencies": {
         "commander": "^6.1.0",
+        "immer": "^7.0.9",
         "ink": "^3.0.6",
         "jest": "^26.4.2",
+        "jest-cli": "^26.4.2",
+        "nullthrows": "^1.1.1",
         "prop-types": "^15.7.2",
-        "react": "^16.13.1"
+        "react": "^16.13.1",
+        "terser": "^5.3.2",
+        "uuid": "^8.3.0"
     }
 }
