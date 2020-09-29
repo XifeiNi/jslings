@@ -7,7 +7,7 @@ export interface CurrentExercise {
     id: string;
     info: Exercise;
     currentHintIndex: number;
-    status: Status.CURRENT;
+    status: Status;
 }
 
 export interface UserData {
